@@ -1191,3 +1191,7 @@ p {
     object-fit: cover;
     z-index: -1;
 } 
+
+.w-75 {
+    width: 100% !important;
+}
