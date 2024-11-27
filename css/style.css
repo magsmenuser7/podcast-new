@@ -1195,3 +1195,62 @@ p {
 .w-75 {
     width: 100% !important;
 }
+
+.stats-info{
+    margin-top: -80px;
+}
+.text-light{
+    color: #fff !important;
+}
+@media(min-width:320px) and (max-width:480px){
+    #home {
+        position: relative;
+        height:auto !important;
+        overflow: hidden;
+    }
+    .stats-info{
+        margin-top:0px;
+    }
+
+    .rounded-end-3 {
+        border-top-right-radius:0px !important;
+        border-bottom-right-radius:0px !important;
+    }
+    .ps-5 {
+        padding-left: 0rem !important;
+    }
+
+    .about-text{
+        text-align: justify !important;
+    }
+
+    .lh-1 {
+        font-size: 25px;
+        padding-bottom: 15px;
+    }
+
+    .fav-section-info{
+        padding: 6em 0.5em 6em 2em;
+    }
+    .latest-podcast {
+        padding: 2em .1em .1em 1.6em;
+    }
+    .social-container {
+        display:grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2,1fr);
+        gap: 1rem;
+    }
+
+
+    h5 {
+        font-size:20px;
+    }
+
+    .lh-1 {
+        font-size: 25px;
+        padding-bottom: 15px;
+        text-align: left;
+    }
+
+}
