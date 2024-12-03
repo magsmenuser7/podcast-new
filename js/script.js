@@ -8,34 +8,35 @@ $(function () {
 
 
 
-document.getElementById('intalks-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const contact = document.getElementById('contact').value;
-    const city = document.getElementById('city').value;
-    const connect = document.getElementById('connect').value;
-  
-    try {
-        const response = await fetch('https://www.magsmen.in/api/contact/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name, email, contact, city,connect}),
-        });
-    
-        const result = await response.json();
-        if (response.ok) {
-          alert('Form submitted successfully!');
-        } else {
-          alert('Error: ' + JSON.stringify(result));
-        }
-      } catch (error) {
-        alert('Error: ' + error.message);
-      }
-  });
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('intalks-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const contact = document.getElementById('contact').value;
+        const city = document.getElementById('city').value;
+        const connect = document.getElementById('connect').value;
 
+        try {
+            const response = await fetch('https://cors-anywhere.herokuapp.com/https://www.magsmen.in/api/contact/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, contact, city, connect }),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                alert('Form submitted successfully!');
+            } else {
+                alert('Error: ' + JSON.stringify(result));
+            }
+        } catch (error) {
+            alert('Error: ' + error.message);
+        }
+    });
+});
 
 // function submitbtn() {
 //     let name = document.getElementById('name').value.trim();
