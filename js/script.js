@@ -4,38 +4,45 @@ $(function () {
     });
 });
 
-document.getElementById('intalks-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const contact = document.getElementById('contact').value;
-    const city = document.getElementById('city').value;
-    const connect = document.getElementById('connect').value;
 
-    try {
-        const response = await fetch('https://www.magsmen.in/api/contact/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email, contact, city, connect }),
-        });
 
-        if (!response.ok) {
-            const errorDetails = await response.json();
-            throw new Error(`Error ${response.status}: ${errorDetails.message}`);
+
+document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('intalks-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+    
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const contact = document.getElementById('contact').value;
+        const city = document.getElementById('city').value;
+        const connect = document.getElementById('connect').value;
+    
+        try {
+            const response = await fetch('https://www.magsmen.in/api/contact/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, contact, city, connect }),
+            });
+    
+            if (!response.ok) {
+                const errorDetails = await response.json();
+                throw new Error(`Error ${response.status}: ${errorDetails.message}`);
+            }
+    
+            const result = await response.json();
+            alert('Form submitted successfully!');
+            document.getElementById('intalks-form').reset();
+    
+        } catch (error) {
+            console.error('Fetch error:', error);
+            alert(`Error: ${error.message}. Please check the console for more details.`);
         }
-
-        const result = await response.json();
-        alert('Form submitted successfully!');
-        document.getElementById('intalks-form').reset();
-        
-    } catch (error) {
-        console.error('Fetch error:', error);
-        alert(`Error: ${error.message}. Please check the console for more details.`);
-    }
+    });
 });
+
 
 
 // document.addEventListener('DOMContentLoaded', function() {
