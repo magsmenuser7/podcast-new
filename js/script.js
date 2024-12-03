@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const connect = document.getElementById('connect').value;
     
         try {
-            const response = await fetch('https://intalks.in/api/contact/', {
+            const response = await fetch('https://www.magsmen.in/api/contact/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -27,18 +27,24 @@ document.addEventListener('DOMContentLoaded', function(){
                 body: JSON.stringify({ name, email, contact, city, connect }),
             });
     
+            const contentType = response.headers.get('Content-Type');
+    
             if (!response.ok) {
-                const errorDetails = await response.json();
-                throw new Error(`Error ${response.status}: ${errorDetails.message}`);
+                const errorDetails = await response.text();
+                throw new Error(`Error ${response.status}: ${errorDetails}`);
             }
     
-            const result = await response.json();
-            alert('Form submitted successfully!');
-            document.getElementById('intalks-form').reset();
-    
+            if (contentType && contentType.includes('application/json')) {
+                const result = await response.json();
+                alert('Form submitted successfully!');
+            } else {
+                const rawResponse = await response.text();
+                console.error('Unexpected response:', rawResponse);
+                alert('Unexpected response from the server. Please check the console for details.');
+            }
         } catch (error) {
             console.error('Fetch error:', error);
-            alert(`Error: ${error.message}. Please check the console for more details.`);
+            alert('Error: ' + error.message + '. Please check the console for more details.');
         }
     });
 });
