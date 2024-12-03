@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = await response.json();
             if (response.ok) {
                 alert('Form submitted successfully!');
+                document.getElementById('intalks-form').reset();
             } else {
                 alert('Error: ' + JSON.stringify(result));
             }
