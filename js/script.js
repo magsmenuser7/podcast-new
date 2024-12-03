@@ -16,20 +16,24 @@ document.getElementById('intalks-form').addEventListener('submit', async functio
     const city = document.getElementById('city').value;
     const connect = document.getElementById('connect').value;
   
-    const response = await fetch('https://www.magsmen.in/api/intalks-contact-form/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, email, contact, city, connect}),
-    });
-  
-    const result = await response.json();
-    if (response.ok) {
-      alert(result.message);
-    } else {
-      alert('Error: ' + JSON.stringify(result));
-    }
+    try {
+        const response = await fetch('https://www.magsmen.in/api/contact/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, contact, city,connect}),
+        });
+    
+        const result = await response.json();
+        if (response.ok) {
+          alert('Form submitted successfully!');
+        } else {
+          alert('Error: ' + JSON.stringify(result));
+        }
+      } catch (error) {
+        alert('Error: ' + error.message);
+      }
   });
 
 
