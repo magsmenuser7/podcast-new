@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const connect = document.getElementById('connect').value;
 
         try {
-            const response = await fetch('https://cors-anywhere.herokuapp.com/https://www.magsmen.in/api/contact/', {
+            const response = await fetch('https://www.magsmen.in/api/contact/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
